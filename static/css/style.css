@@ -1,0 +1,143 @@
+/* styles.css */
+
+/* Button Group */
+.button-group {
+  display: flex;
+  justify-content: flex-start; /* Align the buttons to the left */
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.button-group button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px; /* Adjust the width as needed */
+  height: 100px; /* Adjust the height as needed */
+  background-color: #f1f1f1;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.button-group button img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Heading */
+h2 {
+  text-align: center; /* Center the heading */
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center; /* Center the form fields horizontally */
+  align-items: center;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select {
+  width: 20%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+}
+
+.form-group textarea {
+  width: 20%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  resize: vertical;
+}
+
+.form-group .required {
+  color: red;
+  font-size: 12px;
+  vertical-align: super;
+  margin-left: 5px; /* Add margin-left to create spacing between label and '*' */
+}
+
+/* Bottom Buttons */
+.bottom-buttons {
+  display: flex;
+  justify-content: flex-start; /* Align the buttons to the left */
+  margin-top: 20px;
+}
+
+.bottom-buttons button {
+  margin-right: 10px;
+}
+
+/* Table */
+table {
+  width: 70%;
+   margin: 0 auto;
+  border-collapse: collapse;
+ }
+
+td {
+  padding: 1px;
+  border: 1px solid #ccc;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.red-heading {
+  color: red;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.checkbox-group {
+  margin-top: 20px;
+}
+
+.checkbox-group label {
+  display: block;
+  margin-bottom: 5px;
+  }
+
+/* styles.css */
+
+/* Add some spacing between the radio buttons */
+.form-group label {
+  margin-right: 20px;
+}
+
+.radio-space {
+  display: inline-block;
+  width: 20px;
+}
+
+
+.textbox-space {
+  display: inline-block;
+  width: 40px;
+}
+
+.success_message {
+    color: green;
+    font-weight: bold;
+}
+
+.error_message {
+    color: red;
+    font-weight: bold;
+}
+
+
+
+/* Additional styles as needed */

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Client Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+</head>
+
+
+<body>
+    <div class="button-group">
+        <button class="add-button" title="Add Client">
+            <img src="{{ url_for('static', filename='images/Add.png') }}" alt="Add">
+        </button>
+
+        <button class="edit-button" title="Edit Client">
+            <img src="{{ url_for('static', filename='images/Edit.png') }}" alt="Edit">
+        </button>
+        <button class="search-button"  title="Search Client">
+            <img src="{{ url_for('static', filename='images/Search.png') }}" alt="Search">
+        </button>
+        <button class="home-button" onclick="goToIndex()" title="Home">
+            <img src="{{ url_for('static', filename='images/Home.png') }}" alt="Home">
+        </button>
+    </div>
+
+    <h2>Customer Master</h2>
+
+    <form id="client-form" method="POST" action="/add">
+        <table>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="client_name">Client Name <sup class="required">*</sup></label>
+                        <input type="text" id="client_name" name="client_name" required>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="address">Address <sup class="required">*</sup></label>
+                        <textarea id="address" name="address" required></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="customer_type">Type of Customer <sup class="required">*</sup></label>
+                        <select id="customer_type" name="customer_type" required>
+                            <option value="Automotive">Automotive</option>
+                            <option value="Electrical">Electrical</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Agriculture">Agriculture</option>
+                            <option value="General">General</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="purchase_contact">Purchase Contact <sup class="required">*</sup></label>
+                        <input type="text" id="purchase_contact" name="purchase_contact" required>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                            <label for="purchase_email">Purchase Email ID <sup class="required">*</sup></label>
+                            <input type="email" id="purchase_email" name="purchase_email" required>
+
+                            <label for="purchase_mobile">Mob.No. <sup class="required">*</sup></label>
+                            <input type="tel" id="purchase_mobile" name="purchase_mobile" required>
+
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="project_head">Project Head <sup class="required">*</sup></label>
+                        <input type="text" id="project_head" name="project_head" required>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                            <label for="project_email">Email ID <sup class="required">*</sup></label>
+                            <input type="email" id="project_email" name="project_email" required>
+
+                            <label for="project_mobile">Mob.No. <sup class="required">*</sup></label>
+                            <input type="tel" id="project_mobile" name="project_mobile" required>
+
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="design_contact">Design Contact <sup class="required">*</sup></label>
+                        <input type="text" id="design_contact" name="design_contact" required>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                            <label for="design_email">Email ID <sup class="required">*</sup></label>
+                            <input type="email" id="design_email" name="design_email" required>
+
+                            <label for="design_mobile">Mob.No. <sup class="required">*</sup></label>
+                            <input type="tel" id="design_mobile" name="design_mobile" required>
+
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="quality_contact">Quality-Contact <sup class="required">*</sup></label>
+                        <input type="text" id="quality_contact" name="quality_contact" required>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                            <label for="quality_email">Email ID <sup class="required">*</sup></label>
+                            <input type="email" id="quality_email" name="quality_email" required>
+
+                            <label for="quality_mobile">Mob.No. <sup class="required">*</sup></label>
+                            <input type="tel" id="quality_mobile" name="quality_mobile" required>
+
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="account_contact">Account Contact <sup class="required">*</sup></label>
+                        <input type="text" id="account_contact" name="account_contact" required>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="account_email">Email ID <sup class="required">*</sup></label>
+                        <input type="email" id="account_email" name="account_email" required>
+
+                        <label for="account_mobile">Mob.No. <sup class="required">*</sup></label>
+                        <input type="tel" id="account_mobile" name="account_mobile" required>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h4 class="red-heading">Purchase Order Follow-up</h4>
+                    <div class="checkbox-group">
+                      <label> <input type="checkbox" name="follow_up" value="immediate"> Immediate </label>
+                      <label> <input type="checkbox" name="follow_up" value="1-2-weeks"> 1 to 2 weeks after confirmation </label>
+                      <label> <input type="checkbox" name="follow_up" value="before-completion"> Before work completion  </label>
+                       <label> <input type="checkbox" name="follow_up" value="after-completion"> After work completion follow-up </label>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h4 class="red-heading">Payment Terms </h4>
+                    <div class="checkbox-group">
+                      <label> <input type="checkbox" name="payment_term" value="PO-P1"> % Advance along with PO (P1) </label>
+                      <label> <input type="checkbox" name="payment_term" value="Approval-P1"> % Advance after Design Approval (P1) </label>
+                      <label> <input type="checkbox" name="payment_term" value="samples-P2"> % Advance after T0 samples (P2) </label>
+                      <label> <input type="checkbox" name="payment_term" value="Sample-Approval-P2"> % Advance after Sample Approval (P2) </label>
+                      <label> <input type="checkbox" name="payment_term" value="PPAP-Run-P3"> % Advance after PPAP Run (P3) </label>
+                      <label> <input type="checkbox" name="payment_term" value="Tool-Validation-P3"> % Advance after Tool Validation (P3) </label>
+                      <label> <input type="checkbox" name="payment_term" value="Part-Validation-P3"> % Advance after Part Validation (P3) </label>
+                      <label> <input type="checkbox" name="payment_term" value="Docs- Submission-P3"> % Final after Docs. Submission (P3) </label>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h4 class="red-heading">Samples Approval Process</h4>
+                    <div class="checkbox-group">
+                      <label> <input type="checkbox" name="approval_process" value="supplier-approval"> Self Approval by Supplier </label>
+                      <label> <input type="checkbox" name="approval_process" value="sample-submission"> Immediate after Sample Submission </label>
+                      <label> <input type="checkbox" name="approval_process" value="after-submission"> Up to 4 weeks after submission </label>
+                      <label> <input type="checkbox" name="approval_process" value="continuous-followup"> Needs continious Follow-up </label>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h4 class="red-heading"> Tool Validation Process </h4>
+                    <div class="checkbox-group">
+                      <label> <input type="checkbox" name="approval_process" value="supplier-validation"> Self Validation by Supplier </label>
+                      <label> <input type="checkbox" name="approval_process" value="pilot-batch"> Pilot Batch Production </label>
+                      <label> <input type="checkbox" name="approval_process" value="customer-validation"> Customer Inspection & Validation </label>
+                      <label> <input type="checkbox" name="approval_process" value="continuous-followup-validation"> Needs continuous Follow-up </label>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h4 class="red-heading"> Payment Follow-up </h4>
+                    <div class="checkbox-group">
+                      <label> <input type="checkbox" name="payment_followup" value="p1-immediately"> P1 - Immediate along with PO </label>
+                      <label> <input type="checkbox" name="payment_followup" value="p2-week"> P2 - 1 to 2 weeks </label>
+                      <label> <input type="checkbox" name="payment_followup" value="p3-week"> P3 - Within 4 weeks </label>
+                      <label> <input type="checkbox" name="payment_followup" value="continuous-followup-payment"> Needs continuous Follow-up </label>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h4 class="red-heading"> Other Points </h4>
+                    <div class="checkbox-group">
+                      <label> <input type="checkbox" name="Other_followup" value="always-discount"> Always asking for Discount </label>
+                      <label> <input type="checkbox" name="Other_followup" value="quoted-price"> Accepting at Quoted Price </label>
+                      <label> <input type="checkbox" name="Other_followup" value="knowledge-sharing"> Technical Knowledge Sharing </label>
+                      <label> <input type="checkbox" name="Other_followup" value="no-information"> Not Sharing informations </label>
+                      <label> <input type="checkbox" name="Other_followup" value="Good-communication"> Good Communication / Relations </label>
+                      <label> <input type="checkbox" name="Other_followup" value="Technically-dependent"> Technically Dependent on Supplier </label>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <br>
+                </td>
+            </tr>
+
+            <tr>
+              <!--   <td>
+                    <h4 class="red-heading"> Customer Ratings </h4>
+                    <div class="form-group">
+                       <label for="customer_rating">Customer Rating:</label>
+                        <input type="radio" id="grade_a" name="customer_rating" value="Grade A">
+                        <label for="grade_a">Grade A</label>
+                        <span class="radio-space"></span>
+                        <input type="radio" id="grade_b" name="customer_rating" value="Grade B">
+                        <label for="grade_b">Grade B</label>
+                        <span class="radio-space"></span>
+                       <input type="radio" id="grade_c" name="customer_rating" value="Grade C">
+                        <label for="grade_c">Grade C</label>
+
+
+                     </div>
+                </td> -->
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="discount_details">Discount Details:</label>
+                        <input type="text" id="discount_details" name="discount_details">
+
+                        <span class="textbox-space"></span>
+
+                        <label for="overhead_details">Overhead Details:</label>
+                        <input type="text" id="overhead_details" name="overhead_details">
+                        <span class="textbox-space"></span>
+
+                        <label for="priority_details">Priority Details:</label>
+                        <input type="text" id="priority_details" name="priority_details">
+                    </div>
+                </td>
+            </tr>
+
+             <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="total_offer_sent">Total offer sent:</label>
+                        <input type="text" id="total_offer_sent" name="total_offer_sent">
+                        <span class="textbox-space"></span>
+                        <label for="total_po_recovered">Total PO Recovered:</label>
+                        <input type="text" id="total_po_recovered" name="total_po_recovered">
+                        <span class="textbox-space"></span>
+                        <label for="total_business">Total business:</label>
+                        <input type="text" id="total_business" name="total_business">
+                    </div>
+                </td>
+            </tr>
+
+       </table>
+        <br>
+
+       <div class="button-group">
+        <button class="save-button" title="Save Client" onclick="saveClientData(event)">
+            <img src="{{ url_for('static', filename='images/Save.png') }}" alt="Save">
+        </button>
+       <button class="cancel-button" title="Cancel Changes" onclick="clearForm()">
+            <img src="{{ url_for('static', filename='images/Cancel.png') }}" alt="Cancel">
+        </button>
+
+        <button class="delete-button" title="Delete Client">
+            <img src="{{ url_for('static', filename='images/Delete.png') }}" alt="Delete">
+        </button>
+    </div>
+   </form>
+<!-- Add these div elements at the bottom of your HTML body -->
+    <div id="success_message" class="success_message" style="display: none;">Data saved successfully!</div>
+    <div id="error_message" class="error_message" style="display: none;">Error saving data. Please try again.</div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+</html>

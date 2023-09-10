@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</head>
+<body>
+    <div class="button-box">
+        <button class="add-button" onclick="goToClientForm()">
+            <div>
+                <img src="{{ url_for('static', filename='images/Client.png') }}" alt="Add Client">
+            </div>
+            <div class="button-text">Customer_Master</div>
+        </button>
+    </div>
+
+    <script>
+        function goToClientForm() {
+            window.location.href = "{{ url_for('client_form') }}";
+        }
+    </script>
+</body>
+</html>
