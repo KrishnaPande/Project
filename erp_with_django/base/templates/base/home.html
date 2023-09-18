@@ -1,0 +1,35 @@
+<!-- Home and room template is available only with Base app -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'main.html' %}
+
+{% block content %}
+<h1>Home Template</h1>
+
+<div>
+
+    <div>
+        {% for room in rooms %}
+            <div>
+                <h5>
+                    <!--{{room.id}} -- <a href="/room/{{room.id}}">{{room.name}}</a>
+                    We are using built in Dynamic Programing in Django adding tag{% url %},
+                    this tag generate url base on this tag
+                    We are using room connecting to app_url.py file path-->
+                    {{room.id}} -- <a href="{% url 'room' room.id %}">{{room.name}}</a>
+                </h5>
+            </div>
+
+        {% endfor %}
+    </div>
+
+
+</div>
+{% endblock content %}
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!-- Home and room template is available only with Base app -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'main.html' %}
+
+{% block content %}
+<!--Getting the Dynamic Value in the HTML 1:02-->
+<h1>{{room.name}}</h1>
+{% endblock content %}
+</body>
+</html>
