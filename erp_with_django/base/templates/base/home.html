@@ -1,0 +1,31 @@
+<!-- Home and room template is available only with Base app -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'main.html' %}
+
+{% block content %}
+<h1>Home Template</h1>
+
+<div>
+
+    <div>
+        {% for room in rooms %}
+            <div>
+                <h5>
+                    {{room.id}} -- {{room.name}}
+                </h5>
+            </div>
+
+        {% endfor %}
+    </div>
+
+
+</div>
+{% endblock content %}
+</body>
+</html>
