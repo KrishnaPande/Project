@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Room
 
 # Create your views here.
 
@@ -10,6 +11,8 @@ rooms = [
     {'id': 3, 'name': 'Frontend Developers'},
 ]
 def home(request):
+    # variable_that_holds_response = model_name.model_obj_attribute.method(all(), get(), filter(), exclude() ))
+    rooms = Room.objects.all()
     context = {'rooms': rooms}
     return render(request, "base/home.html", context)
 
