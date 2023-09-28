@@ -1,10 +1,23 @@
 from django.db import models
-from django.contrib.auth import User
+from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE
+
+
 # Create your models here.
+
+class Topic(models.Model):
+    # Hear we are assigning what is topics name(All topic will have name)
+    # Topic can have multiple rooms but room will have only one topic
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
 
 class Room(models.Model):
     # host =
-    # topic =
+    # As we are setting SET_NULL we need to allow null values in db
+    topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     # participants =
@@ -17,7 +30,8 @@ class Room(models.Model):
         return self.name
 
 class Massage(models.Model):
-    # user =
+    # One-to-many relationship user can have many msg
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     # when room is deleted we need children also be deleted
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     body = models.TextField()
