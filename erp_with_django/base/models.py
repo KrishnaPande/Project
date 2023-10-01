@@ -32,12 +32,13 @@ class Room(models.Model):
 class Massage(models.Model):
     # One-to-many relationship user can have many msg
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # when room is deleted we need children also be deleted
+    # when room is deleted we need children also be deleted (CASCADE)
+    # Hear we have created relationship with room
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     body = models.TextField()
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.body[0:50]
 
