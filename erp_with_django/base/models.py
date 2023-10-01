@@ -15,7 +15,7 @@ class Topic(models.Model):
 
 
 class Room(models.Model):
-    # host =
+    host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     # As we are setting SET_NULL we need to allow null values in db
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200)
@@ -40,3 +40,4 @@ class Massage(models.Model):
 
     def __str__(self):
         return self.name
+
