@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Room
+from .forms import RoomForm
 
 # Create your views here.
 
@@ -22,6 +23,11 @@ def home(request):
     rooms = Room.objects.all()
     context = {'rooms': rooms}
     return render(request, "base/home.html", context)
+
+def createRoom(request):
+    form = RoomForm()
+    context = {'form: form'}
+    return render(request, 'base/room_form.html', context)
 
 # Hear we will have access to what ever has been stored in pk
 def room(request, pk):
