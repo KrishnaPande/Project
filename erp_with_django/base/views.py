@@ -26,13 +26,7 @@ def home(request):
 
 # Hear we will have access to what ever has been stored in pk
 def room(request, pk):
-    '''
-    room = None
-    for i in rooms:
-        if i['id'] == int(pk):
-            room = i
-    We need specific model so commenting this out
-    '''
+    # Comment 1
     room = Room.objects.get(id=pk)
     context = {'room': room}
     return render(request, "base/room.html", context)
@@ -48,3 +42,19 @@ def createRoom(request):
 
     context = {'form': form}
     return render(request, 'base/room_form.html', context)
+
+def updateRoom(request, pk):
+    room = Room.objects.get(id=pk)
+    form = RoomForm(instance=room)
+
+    context = {'form': form}
+    return render('request', 'base/room_form.html', context)
+
+    """
+    Comment 1
+    room = None
+    for i in rooms:
+        if i['id'] == int(pk):
+            room = i
+    We need specific model so commenting this out
+    """

@@ -16,6 +16,7 @@
     <div>
         {% for room in rooms %}
             <div>
+                <a href="{% url ''%}">Edit</a>
                 <span>@{{room.host.username}}</span>
                 <h5>
                     <!--{{room.id}} -- <a href="/room/{{room.id}}">{{room.name}}</a>
