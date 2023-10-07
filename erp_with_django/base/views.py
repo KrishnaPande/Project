@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from .models import Room, Topic
 from .forms import RoomForm
 
@@ -13,11 +14,16 @@ def home(request):
     # topic__name__icontains=q i meens it is not case sensitive
     q = request.GET.get('q') if request.GET.get('q')!= None else ''
 
-    rooms = Room.objects.filter(topic__name__contains=q)
+    rooms = Room.objects.filter(
+        Q(topic__name__contains=q) |
+        Q(name__icontains=q) |
+        Q(description__contains=q)
+    )
 
     topics = Topic.objects.all()
+    room_count = rooms.count()
 
-    context = {'rooms': rooms, 'topics': topics}
+    context = {'rooms': rooms, 'topics': topics, 'room_count':room_count}
     return render(request, "base/home.html", context)
 
 # Hear we will have access to what ever has been stored in pk
