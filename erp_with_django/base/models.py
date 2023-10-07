@@ -26,6 +26,8 @@ class Room(models.Model):
     # auto_now will save at every single time and auto_now_add will save only fist instance
     created = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-updated', '-created']
     def __str__(self):
         return self.name
 
