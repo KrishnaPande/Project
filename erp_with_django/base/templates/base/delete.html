@@ -13,11 +13,13 @@
         {% csrf_token %}
         <p>Are you sure you want tp delete "{{obj}}"?</p>
         <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
-        <input type="submit" value="Confirm">
+        <input type="submit" value="Confirm" />
         <!-- we are adding input button submit and confirming that value
         We need to redirect the user to the back page that why we have href
         -->
 
     </form>
+
+    {%  endblock content %}
 </body>
 </html>

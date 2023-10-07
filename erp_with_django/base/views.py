@@ -47,11 +47,12 @@ def updateRoom(request, pk):
 def deleteRoom(request, pk):
     # We want to know which room we are deleting
     room = Room.objects.get(id=pk)
+    # Pst method is for confirm
     if request.method == 'POST':
         room.delete()
         # Sending user back to home page
         return redirect('home')
-    return render('request', 'bae/delete.html', {'obj': room})
+    return render(request, 'base/delete.html', {'obj': room})
 
     """
     Comment 1
