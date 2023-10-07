@@ -1,7 +1,23 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.db.models import Q
+from django.contrib.auth.models import User
 from .models import Room, Topic
 from .forms import RoomForm
+
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+    try:
+        user = User.object.get(username=username)
+    except:
+        massages.error(request, 'user does not exist')
+
+
+    context = {}
+    return render(request, 'base/login_register.html', context)
 
 def home(request):
     # it's overriding the above variable room
