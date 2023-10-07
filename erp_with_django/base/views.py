@@ -2,19 +2,6 @@ from django.shortcuts import render, redirect
 from .models import Room
 from .forms import RoomForm
 
-# Create your views here.
-
-# Render Rooms
-
-'''
-Commenting this out as we need dynamic room by bellow query time 1:23:14
-rooms = [
-    {'id': 1, 'name': 'Lets learn python!'},
-    {'id': 2, 'name': 'Design with me'},
-    {'id': 3, 'name': 'Frontend Developers'},
-]
-'''
-
 def home(request):
     # it's overriding the above variable room
     # it's the query we are adding
@@ -56,6 +43,16 @@ def updateRoom(request, pk):
     context = {'form': form}
     return render('request', 'base/room_form.html', context)
 
+
+def deleteRoom(request, pk):
+    # We want to know which room we are deleting
+    room = Room.objects.get(id=pk)
+    if request.method == 'POST':
+        room.delete()
+        # Sending user back to home page
+        return redirect('home')
+    return render('request', 'bae/delete.html', {'obj': room})
+
     """
     Comment 1
     room = None
@@ -64,3 +61,16 @@ def updateRoom(request, pk):
             room = i
     We need specific model so commenting this out
     """
+
+    # Create your views here.
+
+    # Render Rooms
+
+    '''
+    Commenting this out as we need dynamic room by bellow query time 1:23:14
+    rooms = [
+        {'id': 1, 'name': 'Lets learn python!'},
+        {'id': 2, 'name': 'Design with me'},
+        {'id': 3, 'name': 'Frontend Developers'},
+    ]
+    '''
