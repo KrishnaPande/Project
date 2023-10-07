@@ -14,11 +14,12 @@
         {% csrf_token %}
 
         <label>Username</label>
-        <input type="text" value="username" placeholder="Enter Username" />
+        <input type="text" name="username" placeholder="Enter Username" />
 
         <label>Password:</label>
-        <input type="password" value="password" placeholder="Enter Password" />
+        <input type="password" name="password" placeholder="Enter Password" />
 
+        <input type="submit" value="login">
       </form>
     </div>
 
@@ -26,3 +27,6 @@
 
 </body>
 </html>
+
+<!-- When we type in input it give result like text/ number/ password that is 4 rules
+then if we need to submit it we use type submit

@@ -6,20 +6,21 @@ from .models import Room, Topic
 from .forms import RoomForm
 
 def loginPage(request):
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
 
     try:
-        user = User.object.get(username=username)
+        user = User.objects.get(username=username)
     except:
-        massages.error(request, 'user does not exist')
-
+        messages.error(request, 'user does not exist')
 
     context = {}
     return render(request, 'base/login_register.html', context)
 
 def home(request):
+
     # it's overriding the above variable room
     # it's the query we are adding
     # variable_that_holds_response = model_name.model_obj_attribute.method(all(), get(), filter(), exclude() ))
