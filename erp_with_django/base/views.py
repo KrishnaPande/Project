@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Room
+from .models import Room, Topic
 from .forms import RoomForm
 
 def home(request):
@@ -8,7 +8,10 @@ def home(request):
     # variable_that_holds_response = model_name.model_obj_attribute.method(all(), get(), filter(), exclude() ))
     # Models by defauld have id generated for them so it start with 1
     rooms = Room.objects.all()
-    context = {'rooms': rooms}
+
+    topics = Topic.objects.all()
+
+    context = {'rooms': rooms, 'topics': topics}
     return render(request, "base/home.html", context)
 
 # Hear we will have access to what ever has been stored in pk
