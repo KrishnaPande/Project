@@ -6,8 +6,14 @@ def home(request):
     # it's overriding the above variable room
     # it's the query we are adding
     # variable_that_holds_response = model_name.model_obj_attribute.method(all(), get(), filter(), exclude() ))
-    # Models by defauld have id generated for them so it start with 1
-    rooms = Room.objects.all()
+    # Models by default have id generated for them so it start with 1
+    # we can use filter() method
+    # q == what we pass in the url
+    # topic__name__contains=q this is what we search in url it is case sensitive
+    # topic__name__icontains=q i meens it is not case sensitive
+    q = request.GET.get('q') if request.GET.get('q')!= None else ''
+
+    rooms = Room.objects.filter(topic__name__contains=q)
 
     topics = Topic.objects.all()
 
