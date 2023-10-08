@@ -19,10 +19,10 @@ def loginPage(request):
         except:
             messages.error(request, 'user does not exist')
 
-    # if exist authenticate it
+        # if exist authenticate it
         user = authenticate(request, username=username, password=password)
 
-    # use login build in function if yes and redirect the user to home page
+        # use login build in function if yes and redirect the user to home page
         if user is not None:
             login(request, user)
             return redirect('home')
