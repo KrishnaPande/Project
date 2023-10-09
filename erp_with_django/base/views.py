@@ -10,6 +10,10 @@ from .forms import RoomForm
 
 def loginPage(request):
     # we get username and passs
+
+    if request.user.is_authenticated:
+        return redirect('home')
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
