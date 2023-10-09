@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('login/', views.loginPage, name="login"),
+    path('logout/', views.logoutUser, name="logout"),
 
     path('', views.home, name = "home"),
     # Passing a Dynamic Value 59:07
