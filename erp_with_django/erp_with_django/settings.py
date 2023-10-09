@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    # When user logged created are send to the backend which create a session token which store info of login time
+    # We take that session and save that in the browser
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'main.html' %}
+
+    {% block content %}
+
+    <div>
+      <form method="POST" action="">
+        {% csrf_token %}
+
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Enter Username" />
+
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Enter Password" />
+
+        <input type="submit" value="login">
+      </form>
+    </div>
+
+    {% endblock content %}
+
+</body>
+</html>
+
+<!-- When we type in input it give result like text/ number/ password that is 4 rules
+then if we need to submit it we use type submit
