@@ -104,9 +104,10 @@ def room(request, pk):
     room_messages = room.message_set.all().order_by('-created')
 
     if request.method == "POST":
-        messages = Message.objects.create(
+        message = Message.objects.create(
             user=request.user,
             room=room,
+            # what ever we have entered in input(name='body') in room.html we will get there
             body=request.POST.get('body')
         )
         return redirect('room', pk=room.id)
