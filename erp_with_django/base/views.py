@@ -153,11 +153,28 @@ def deleteRoom(request, pk):
     # We want to know which room we are deleting
     room = Room.objects.get(id=pk)
     # Pst method is for confirm
+    if request.user != room.host:
+        return HttpResponse('You are not allowed here!!')
+
     if request.method == 'POST':
         room.delete()
         # Sending user back to home page
         return redirect('home')
     return render(request, 'base/delete.html', {'obj': room})
+
+@login_required(login_url='login')
+def deleteMessage(request, pk):
+    # just copied deleteRoom function
+    message = Message.objects.get(id=pk)
+    if request.user != message.user:
+        return HttpResponse('You are not allowed here!!')
+
+    if request.method == 'POST':
+        message.delete()
+        return redirect('home')
+    return render(request, 'base/delete.html', {'obj': message})
+
+
 
     """
     Comment 1
@@ -167,11 +184,8 @@ def deleteRoom(request, pk):
             room = i
     We need specific model so commenting this out
     """
-
     # Create your views here.
-
     # Render Rooms
-
     '''
     Commenting this out as we need dynamic room by bellow query time 1:23:14
     rooms = [
