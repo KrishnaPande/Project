@@ -1,21 +1,25 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.db.models import Q
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .models import Room, Topic
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.db.models import Q
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+
 from .forms import RoomForm
+from .models import Room, Topic, Message
+
 
 def loginPage(request):
     # we get username and passs
 
+    page = 'login'
     if request.user.is_authenticated:
         return redirect('home')
 
     if request.method == 'POST':
-        username = request.POST.get('username')
+        username = request.POST.get('username').lower()
         password = request.POST.get('password')
 
         # if user exist
@@ -36,12 +40,38 @@ def loginPage(request):
             messages.error(request, 'username or password does not exist')
 
 
-    context = {}
+    context = {'page': page}
     return render(request, 'base/login_register.html', context)
 
 def logoutUser(request):
     logout(request)
     return redirect('home')
+
+def registerPage(request):
+    form = UserCreationForm()
+
+    # we pass in the user data
+    if request.method == 'POST':
+        # we push that into user creation form
+        form = UserCreationForm(request.POST)
+        # we check if the from is valid
+        if form.is_valid():
+            # we get the username
+            user = form.save(commit=False)
+            # we making sure it is lower case
+            user.username = user.username.lower()
+            # we save the user
+            user.save()
+            # we log it in
+            login(request, user)
+            # we push it to home page
+            return redirect('home')
+        else:
+            messages.error(request, 'An Error occurred during registration')
+
+
+    return render(request, 'base/login_register.html', {'form':form})
+
 
 def home(request):
 
@@ -71,7 +101,20 @@ def home(request):
 def room(request, pk):
     # Comment 1
     room = Room.objects.get(id=pk)
-    context = {'room': room}
+    room_messages = room.message_set.all().order_by('-created')
+    participants = room.participants.all()
+
+    if request.method == "POST":
+        message = Message.objects.create(
+            user=request.user,
+            room=room,
+            # what ever we have entered in input(name='body') in room.html we will get there
+            body=request.POST.get('body')
+        )
+        room.participants.add(request.user)
+        return redirect('room', pk=room.id)
+
+    context = {'room': room, 'room_messages': room_messages, 'participants': participants}
     return render(request, "base/room.html", context)
 
 @login_required(login_url='login')
@@ -110,11 +153,28 @@ def deleteRoom(request, pk):
     # We want to know which room we are deleting
     room = Room.objects.get(id=pk)
     # Pst method is for confirm
+    if request.user != room.host:
+        return HttpResponse('You are not allowed here!!')
+
     if request.method == 'POST':
         room.delete()
         # Sending user back to home page
         return redirect('home')
     return render(request, 'base/delete.html', {'obj': room})
+
+@login_required(login_url='login')
+def deleteMessage(request, pk):
+    # just copied deleteRoom function
+    message = Message.objects.get(id=pk)
+    if request.user != message.user:
+        return HttpResponse('You are not allowed here!!')
+
+    if request.method == 'POST':
+        message.delete()
+        return redirect('home')
+    return render(request, 'base/delete.html', {'obj': message})
+
+
 
     """
     Comment 1
@@ -124,11 +184,8 @@ def deleteRoom(request, pk):
             room = i
     We need specific model so commenting this out
     """
-
     # Create your views here.
-
     # Render Rooms
-
     '''
     Commenting this out as we need dynamic room by bellow query time 1:23:14
     rooms = [
