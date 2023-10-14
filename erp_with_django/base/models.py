@@ -20,7 +20,7 @@ class Room(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
-    # participants =
+    participants = models.ManyToManyField(User, related_name='participants', blank=True)
     # when ever save is clicked it will go and add a time stamp
     updated = models.DateTimeField(auto_now=True)
     # auto_now will save at every single time and auto_now_add will save only fist instance
@@ -31,7 +31,7 @@ class Room(models.Model):
     def __str__(self):
         return self.name
 
-class Massage(models.Model):
+class Message(models.Model):
     # One-to-many relationship user can have many msg
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # when room is deleted we need children also be deleted (CASCADE)

@@ -11,6 +11,19 @@
 {% block content %}
 <!--Getting the Dynamic Value in the HTML 1:02-->
 <h1>{{room.name}}</h1>
+
+<p>{{room.description}}</p>
+
+<div class="comment-wrapper">
+    <h3>Conversation</h3>
+    <hr>
+    {% for message in room_messages %}
+        <div>
+            <small>@{{message.user}}  {{message.created|timesince}} </small>
+
+        </div>
+    {% endfor %}
+</div>
 {% endblock content %}
 </body>
 </html>

@@ -50,13 +50,21 @@ def logoutUser(request):
 def registerPage(request):
     form = UserCreationForm()
 
+    # we pass in the user data
     if request.method == 'POST':
-        from = UserCreationForm(request.POST)
+        # we push that into user creation form
+        form = UserCreationForm(request.POST)
+        # we check if the from is valid
         if form.is_valid():
+            # we get the username
             user = form.save(commit=False)
+            # we making sure it is lower case
             user.username = user.username.lower()
+            # we save the user
             user.save()
+            # we log it in
             login(request, user)
+            # we push it to home page
             return redirect('home')
         else:
             messages.error(request, 'An Error occurred during registration')
@@ -93,7 +101,8 @@ def home(request):
 def room(request, pk):
     # Comment 1
     room = Room.objects.get(id=pk)
-    context = {'room': room}
+    room_messages = room.message_set.all()
+    context = {'room': room, 'room_messages': room_messages}
     return render(request, "base/room.html", context)
 
 @login_required(login_url='login')
