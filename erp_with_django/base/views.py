@@ -72,7 +72,6 @@ def registerPage(request):
 
     return render(request, 'base/login_register.html', {'form':form})
 
-
 def home(request):
 
     # it's overriding the above variable room
@@ -118,6 +117,9 @@ def room(request, pk):
     context = {'room': room, 'room_messages': room_messages, 'participants': participants}
     return render(request, "base/room.html", context)
 
+def userprofile(request):
+    return render(request, 'base/profile.html')
+  
 @login_required(login_url='login')
 # it called decorator and it will restrict user to enter/ and will redirect them to login page
 def createRoom(request):

@@ -5,20 +5,37 @@
     <title>Title</title>
 </head>
 <body>
-    <a href = "/">
-        <h1>LOGO</h1>
-    </a>
+    <style>
+        .need{
+            display: grid;
+            grid-template-columns: 3fr 1fr
+        }
+    </style>
+    <div class="need">
+        <div>
+            <a href = "/">
+                <h1>LOGO</h1>
+            </a>
 
-    <form method="GET" action="{% url 'home' %}">
-        <input type="text" name="q" placeholder="Search Rooms..."/>
-    </form>
+            <form method="GET" action="{% url 'home' %}">
+                <input type="text" name="q" placeholder="Search Rooms..."/>
+            </form>
 
-    {% if request.user.is_authenticated %}
-    <p>Hello {{request.user}}</p>
-    <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-    <a href="{% url 'login' %}">Login</a>
-    {% endif %}
-<hr>
+            {% if request.user.is_authenticated %}
+            <p>Hello {{request.user}}</p>
+            <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+            <hr>
+        </div>
+
+        <div>
+            <small>Profile</small>
+            <a href="{% url 'profile' %}">profile</a>
+            <hr>
+        </div>
+    </div>
+
 </body>
 </html>
