@@ -100,7 +100,7 @@ def home(request):
 # Hear we will have access to what ever has been stored in pk
 def room(request, pk):
     # Comment 1
-    room = Room.objects.get(id=pk)
+    room = Room.objects.get(username=pk)
     room_messages = room.message_set.all().order_by('-created')
     participants = room.participants.all()
 
@@ -117,9 +117,16 @@ def room(request, pk):
     context = {'room': room, 'room_messages': room_messages, 'participants': participants}
     return render(request, "base/room.html", context)
 
-def userprofile(request):
-    return render(request, 'base/profile.html')
-  
+def userprofile(request, uk):
+
+    user = User.objects.get(id=uk)
+    rooms = user.room_set.all()
+    room_message = user.message_set.all()
+    topic = Topic.objects.all()
+    contest = {'user': user, 'rooms': rooms, 'room_message': room_message, 'topic': topic}
+    return render(request, 'base/profile.html', contest)
+
+
 @login_required(login_url='login')
 # it called decorator and it will restrict user to enter/ and will redirect them to login page
 def createRoom(request):
@@ -133,6 +140,7 @@ def createRoom(request):
 
     context = {'form': form}
     return render(request, 'base/room_form.html', context)
+
 @login_required(login_url='login')
 def updateRoom(request, pk):
 
