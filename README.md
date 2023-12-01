@@ -1,4 +1,4 @@
-# Project
+# Social Media Platform in Django
 
 {% %} 
 Django Templating Enginee
