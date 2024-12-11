@@ -5,8 +5,9 @@ urlpatterns = [
     path('login/', views.loginPage, name="login"),
     path('logout/', views.logoutUser, name="logout"),
     path('register/', views.registerPage, name="register"),
+    path('profile/<str:uk>/', views.userprofile, name="user-profile"),
 
-    path('', views.home, name = "home"),
+    path('', views.home, name="home"),
     # Passing a Dynamic Value 59:07
     path('room/<str:pk>/', views.room, name="room"),
     path('create-room/', views.createRoom, name="create-room"),
